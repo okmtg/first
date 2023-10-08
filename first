@@ -16,7 +16,8 @@ def password(q):
 
     while t < int(q):
 
-        number = dice(5)
+        number = str(dice(5))
+        num="".join(number)
 
         file = open(r"eff_large_wordlist.txt", "r")
 
@@ -26,15 +27,17 @@ def password(q):
 
         for line in haha:
 
-            if number in line:
+            if num in line:
                 p = line.split()[1]
                 charList.append(p)
 
         t = t + 1
-
-
-
+        print(charList)
     return charList
+
+
+
+
 
 
 inputtt = input("how long do you want the password to be?: ")
