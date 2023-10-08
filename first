@@ -1,0 +1,45 @@
+import random as r
+
+def dice(x):
+    n=1
+    l=[]
+    while n<=x:
+        l.append(r.randint(1,6))
+        n=n+1
+    return l
+print(dice(6))
+charList = []
+haha=[]
+
+def password(q):
+    t = 0
+
+    while t < int(q):
+
+        number = dice(5)
+
+        file = open(r"eff_large_wordlist.txt", "r")
+
+        f = file.readlines()
+        for o in f:
+            haha.append(o)
+
+        for line in haha:
+
+            if number in line:
+                p = line.split()[1]
+                charList.append(p)
+
+        t = t + 1
+
+
+
+    return charList
+
+
+inputtt = input("how long do you want the password to be?: ")
+
+
+
+password(inputtt)
+
