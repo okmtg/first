@@ -18,7 +18,7 @@ def password(q):
     while t < int(q):
 
         number = str(dice(5))
-        thanks = "".join(number)
+        thanks = "".join(haha)
 
         f = file.readlines()
         for o in f:
