@@ -13,26 +13,24 @@ haha=[]
 
 def password(q):
     t = 0
+    file = open(r"eff_large_wordlist.txt", "r")
 
     while t < int(q):
 
         number = str(dice(5))
-        num="".join(number)
-
-        file = open(r"eff_large_wordlist.txt", "r")
+        thanks = "".join(number)
 
         f = file.readlines()
         for o in f:
             haha.append(o)
 
         for line in haha:
-
-            if num in line:
+            if thanks in line:
                 p = line.split()[1]
                 charList.append(p)
 
         t = t + 1
-        print(charList)
+    print(charList)
     return charList
 
 
@@ -41,8 +39,5 @@ def password(q):
 
 
 inputtt = input("how long do you want the password to be?: ")
-
-
-
 password(inputtt)
 
