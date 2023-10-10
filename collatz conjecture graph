@@ -1,0 +1,23 @@
+import numpy as n
+import matplotlib.pyplot as m
+
+listy=[]
+def collatz(x):
+    listy.append(x)
+    while x!=1:
+        if x%2==0:
+            x=x/2
+            listy.append(x)
+        else:
+            x=(3*x)+1
+            listy.append(x)
+    print(listy)
+    return(listy)
+inputtt=input("what number do u want?: ")
+j=int(inputtt)
+h=[]
+for each in collatz(j):
+    h.append(each)
+
+m.scatter(h, h)
+m.show()
