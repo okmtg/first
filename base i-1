@@ -1,0 +1,26 @@
+import cmath
+
+other=[]
+def power(x):
+    h=1j-1
+    other.append(h**x)
+    return other
+
+    
+n=2
+li=[1]
+#while z<10:
+  #  li.append(power(z))
+  #  z=z+1
+  
+while n<20:
+    i=1j-1
+    li.append(i**n)
+    n = n+1
+print(li)
+def base(t):
+    for item in li:
+        if item==t:
+            print(li[item-1])
+        elif item
+base(1)
