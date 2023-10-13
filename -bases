@@ -1,0 +1,14 @@
+base=int(input("What is your base?: "))
+start=int(input("What is your number to convert:? "))
+listy=[]
+
+while start != 1:
+    r=0
+    if start%base == 0:
+        start = start/base
+        listy.append(0)
+    else:
+        r=abs(start%base)
+        start=start//base +1
+        listy.append(r)
+print(listy)
