@@ -7,16 +7,8 @@ while start != 0.0:
     r = 0
     # if start is even number add 0 to the list and
     # redefine start as start divided by the base
-    if start % base == 0 and start != -2:
+    if start % base == 0:
         start = start/base
-
-        listy.append(0)
-    # when start is 2 and -2 things go funky
-    elif start == 2:
-        start = start // base
-        listy.append(0)
-    elif start == -2:
-        start = start // base
         listy.append(0)
     else:
         r = abs(start % base)
