@@ -10,13 +10,13 @@ while start != 0.0:
     if start % base == 0:
         start = start/base
         listy.append(0)
+    # remainder is the positive value of the modulo division of start and base
+    # start has to be added 1 because of the floor divide function (//)
+
     else:
         r = abs(start % base)
         start = (start // base) + 1
 
         listy.append(r)
-
-
-
 listy.reverse()
 print(listy)
