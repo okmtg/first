@@ -1,14 +1,30 @@
-base=int(input("What is your base?: "))
-start=int(input("What is your number to convert:? "))
-listy=[]
+base = -2
+start = int(input("What is your number to convert to base -2?:  "))
+listy = []
 
-while start != 1:
-    r=0
-    if start%base == 0:
+while start != 0.0:
+    # r is the remainder upon division
+    r = 0
+    # if start is even number add 0 to the list and
+    # redefine start as start divided by the base
+    if start % base == 0 and start != -2:
         start = start/base
+
+        listy.append(0)
+    # when start is 2 and -2 things go funky
+    elif start == 2:
+        start = start // base
+        listy.append(0)
+    elif start == -2:
+        start = start // base
         listy.append(0)
     else:
-        r=abs(start%base)
-        start=start//base +1
+        r = abs(start % base)
+        start = (start // base) + 1
+
         listy.append(r)
+
+
+
+listy.reverse()
 print(listy)
