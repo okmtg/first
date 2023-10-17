@@ -1,5 +1,5 @@
-base = -2
-start = int(input("What is your number to convert to base -2?:  "))
+start_base =int(input("What is your base?: ")
+start = int(input("What is your number to convert to base x?:  "))
 listy = []
 
 while start != 0.0:
@@ -14,7 +14,7 @@ while start != 0.0:
     # start has to be added 1 because of the floor divide function (//)
 
     else:
-        r = abs(start % base)
+        r = start % abs(base)
         start = (start // base) + 1
 
         listy.append(r)
