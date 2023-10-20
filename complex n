@@ -1,0 +1,14 @@
+listy=[]
+def spl(x):
+    j=str(x)
+    print(j)
+    
+        
+    z=j.split("+")[0]
+    y=j.split("+")[1]
+    listy.append(z)
+    listy.append(y)
+    print(listy)
+
+spl(5+5j)
+    
