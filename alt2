@@ -1,4 +1,8 @@
 import csv
+import matplotlib.pyplot as p
+import statistics as c
+import numpy as n
+
 file="IQ_level.csv"
 dic={}
 
@@ -6,10 +10,16 @@ with open(file, newline="") as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         dic[row["country"]] = {
+            "country" : row["country"],
             "rank" : row['ï»¿rank'],
-            "iq" : row['ï»¿IQ'],
-            "education": row['ï»¿education'],
-            "income": row['ï»¿avg_income'],
-            "temp": row['ï»¿avg_temp']
+            "iq" : row['IQ']
             }
-        
+
+x=[]
+y=[]
+for key in dic:
+    y.append(dic[key]["iq"])
+    x.append(dic[key]["country"])
+print(y)
+p.scatter(x,y)
+p.show()
