@@ -26,9 +26,11 @@ for k in dic:
     w.append(dic[k]["iq"])
 for kk in w:
     z.append(int(kk))
-
+print(c.mean(z))
+print(c.mode(z))
+print(c.median(z))
     
 
-p.scatter(x,y)
+p.bar(x,y)
 p.show()
 
