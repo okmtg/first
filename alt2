@@ -17,13 +17,18 @@ with open(file, newline="") as csvfile:
 
 x=[]
 y=[]
-me=[]
+z=[]
+w=[]
 for key in dic:
     y.append(dic[key]["iq"])
     x.append(dic[key]["country"])
-for hee in y:
-    me.append(int(hee))
-for zee in 
+for k in dic:
+    w.append(dic[k]["iq"])
+for kk in w:
+    z.append(int(kk))
+
+    
 
 p.scatter(x,y)
 p.show()
+
