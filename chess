@@ -1,0 +1,44 @@
+import chess.pgn
+import pandas 
+import chess.engine
+from pathlib import Path
+engine = chess.engine.SimpleEngine.popen_uci("stockfish")
+folder_chess = Path("Lichess Elite Database")
+dict=[]
+
+
+for pgn_file in folder_chess.glob("*.pgn"):
+    
+    with open(pgn_file, 'r') as file:
+        
+        while True:
+            game = chess.pgn.read_game(file)
+            if game is None:
+                break  
+
+           
+            print("Game Headers:")
+            dict["1"] = {}
+            
+            print(game.headers)
+            
+           
+            print("\nMoves in the game:")
+            board = game.board()
+            for move in game.mainline_moves():
+                print(board.san(move))
+                board.push(move) 
+            print("\n" + "-"*40 + "\n")
+
+    
+    
+   
+   
+    
+    
+
+
+    
+
+        
+    
