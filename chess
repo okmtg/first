@@ -2,36 +2,53 @@ import chess.pgn
 import pandas 
 import chess.engine
 from pathlib import Path
-engine = chess.engine.SimpleEngine.popen_uci("stockfish")
+import pickle
+
 folder_chess = Path("Lichess Elite Database")
-dict=[]
+dict={}
 
 
 for pgn_file in folder_chess.glob("*.pgn"):
     
     with open(pgn_file, 'r') as file:
-        
+        x=1
         while True:
             game = chess.pgn.read_game(file)
             if game is None:
                 break  
 
            
-            print("Game Headers:")
-            dict["1"] = {}
             
-            print(game.headers)
+            
+            r=game.headers["Result"]
+            if r=="0-1":
+                r=0
+            if r=="1-0":
+                r==1
+            if r=="1/2-1/2":
+                r=1/2
+            
+            k=game.headers["Opening"]
+            
+            
+            dict[x]={
+                "Opening" : k,
+                "Result" : r
+                
+                }
+            
+            
             
            
-            print("\nMoves in the game:")
-            board = game.board()
-            for move in game.mainline_moves():
-                print(board.san(move))
-                board.push(move) 
-            print("\n" + "-"*40 + "\n")
+#             print("\nMoves in the game:")
+#             board = game.board()
+#             for move in game.mainline_moves():
+#                 print(board.san(move))
+#                 board.push(move) 
+#             print("\n" + "-"*40 + "\n")
+            x+=1
 
-    
-    
+pickle.dump(dict, open("dict_data.p", "wb"))
    
    
     
@@ -42,3 +59,11 @@ for pgn_file in folder_chess.glob("*.pgn"):
 
         
     
+    
+
+
+    
+
+        
+    
+
