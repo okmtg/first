@@ -3,16 +3,20 @@ import pandas
 import chess.engine
 from pathlib import Path
 import pickle
+from firebase import firebase
 
+db = firebase.FirebaseApplication("https://cs-2024-2808e-default-rtdb.europe-west1.firebasedatabase.app/")
 folder_chess = Path("Lichess Elite Database")
 dict={}
-
+x=1
 
 for pgn_file in folder_chess.glob("*.pgn"):
     
     with open(pgn_file, 'r') as file:
-        x=1
+        
         while True:
+            x+=1
+            
             game = chess.pgn.read_game(file)
             if game is None:
                 break  
@@ -21,6 +25,7 @@ for pgn_file in folder_chess.glob("*.pgn"):
             
             
             r=game.headers["Result"]
+            
             if r=="0-1":
                 r=0
             if r=="1-0":
@@ -36,6 +41,9 @@ for pgn_file in folder_chess.glob("*.pgn"):
                 "Result" : r
                 
                 }
+        
+            db.post("Openings", dict[x])
+
             
             
             
@@ -48,10 +56,14 @@ for pgn_file in folder_chess.glob("*.pgn"):
 #             print("\n" + "-"*40 + "\n")
             x+=1
 
-pickle.dump(dict, open("dict_data.p", "wb"))
+#pickle.dump(dict, open("dict_data.p", "wb"))
    
    
+
+
+
     
+
     
 
 
