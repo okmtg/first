@@ -1,0 +1,16 @@
+from firebase import firebase
+db=firebase.FirebaseApplication("https://cs-2024-2808e-default-rtdb.europe-west1.firebasedatabase.app/")
+openings=db.get("Openings", None)
+freq={}
+for x in openings:
+    openings[x]["Opening"]=temp
+    if openings[x]["Opening"] is in freq:
+        freq[temp]=+=1
+
+
+
+    
+    else:
+        openings[x]["Opening"]=temp
+        freq[temp]=1
+    
