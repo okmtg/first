@@ -1,0 +1,60 @@
+import chess.pgn
+import pandas 
+import chess.engine
+from pathlib import Path
+import pickle
+from firebase import firebase
+
+db = firebase.FirebaseApplication("https://cs-2024-2808e-default-rtdb.europe-west1.firebasedatabase.app/")
+folder_chess = Path("Lichess Elite Database")
+dict={}
+x=1
+
+for pgn_file in folder_chess.glob("*.pgn"):
+    
+    with open(pgn_file, 'r') as file:
+        
+        while True:
+            x+=1
+            
+            game = chess.pgn.read_game(file)
+            if game is None:
+                break  
+
+           
+            
+            
+            r=game.headers["Result"]
+            
+            if r=="0-1":
+                r=0
+            if r=="1-0":
+                r==1
+            if r=="1/2-1/2":
+                r=1/2
+            
+            k=int(game.headers["WhiteElo"])
+            j=int(game.headers["BlackElo"])
+            
+            
+            dict[x]={
+                "white_elo" : k,
+                "black_elo":j,
+                "Result" : r
+                
+                }
+        
+            db.post("ELO", dict[x])
+
+            
+            
+            
+           
+#             print("\nMoves in the game:")
+#             board = game.board()
+#             for move in game.mainline_moves():
+#                 print(board.san(move))
+#                 board.push(move) 
+#             print("\n" + "-"*40 + "\n")
+            x+=1
+
