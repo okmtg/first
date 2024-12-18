@@ -1,4 +1,5 @@
 from firebase import firebase
+import matplotlib.pyplot as plt
 db=firebase.FirebaseApplication("https://cs-2024-2808e-default-rtdb.europe-west1.firebasedatabase.app/")
 openings=db.get("Openings", None)
 freq={}
@@ -6,6 +7,13 @@ freq={}
 for x in openings:
     temp=openings[x]["Opening"]
     tempy=openings[x]["Result"]
+    
+    newTemp = ""
+    for l in temp:
+        newTemp += l
+        if l == ":" or l == ",":
+            break
+    temp = newTemp
     
     if temp in freq:
         freq[temp]["games"]+=1
@@ -18,9 +26,37 @@ for x in openings:
     if tempy=="1-0" or tempy==1:
         freq[temp]["Result"]+=1
     
-
+nerd=[]
+winra={}
 for x in freq:
-    print(x)
+    freq[x]["win_rate"]=freq[x]["Result"]/freq[x]["games"]
+    if freq[x]["win_rate"] ==1 or freq[x]["win_rate"]==0:
+               nerd.append(x)
+for each in nerd:
+    freq.pop(each)
+for x in freq:
+    winra[x]=freq[x]["win_rate"]
+
     
     
     
+
+sorted_dic=dict(sorted(winra.items(), key=lambda item: item[1]))
+for x in sorted_dic:
+    print(sorted_dic[x])
+x_val=list(sorted_dic.keys())
+y_val=list(sorted_dic.values())
+plt.figure(figsize=(10, 5))
+plt.bar(x_val, y_val, color='skyblue')
+plt.xlabel('Opening Names')
+plt.ylabel('Values')
+plt.title('Opening vs Winrate')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+
+
+plt.show()
+    
+    
+    
+
